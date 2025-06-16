@@ -104,7 +104,7 @@ def load_model_and_inference():
     """Explicitly load the model and inference functions"""
     global predict_synergy, predict_synergy_batch, find_most_similar
     
-    print("🔍 Checking required files...")
+    print(" Checking required files...")
     
     # Check if required files exist
     required_files = ['org_features.csv', 'siamese_model.pth', 'inference.py', 'features.py']
@@ -122,14 +122,14 @@ def load_model_and_inference():
             print(f"  {status} {file}")
         return False
     
-    print("✅ All required files found")
+    print(" All required files found")
     
     # Add current directory to Python path (in case of import issues)
     if '.' not in sys.path:
         sys.path.insert(0, '.')
     
     try:
-        print("📊 Loading inference functions...")
+        print(" Loading inference functions...")
         print("   This will trigger:")
         print("   1. Loading org_features.csv")
         print("   2. Processing features")
@@ -144,10 +144,10 @@ def load_model_and_inference():
         predict_synergy_batch = psb
         find_most_similar = fms
         
-        print("✅ Model and inference functions loaded successfully!")
+        print(" Model and inference functions loaded successfully!")
         
         # Test that functions work
-        print("🧪 Testing functions...")
+        print(" Testing functions...")
         
         # Get some org IDs to test with
         import pandas as pd
@@ -156,31 +156,31 @@ def load_model_and_inference():
         
         if len(sample_org_ids) >= 2:
             test_score = predict_synergy(sample_org_ids[0], sample_org_ids[1])
-            print(f"✅ Test prediction: {test_score:.4f}")
+            print(f" Test prediction: {test_score:.4f}")
         
         return True
         
     except Exception as e:
-        print(f"❌ Error loading model: {e}")
-        print(f"❌ Error type: {type(e).__name__}")
-        print(f"❌ Error details: {str(e)}")
+        print(f" Error loading model: {e}")
+        print(f" Error type: {type(e).__name__}")
+        print(f" Error details: {str(e)}")
         
         # Give specific guidance based on error type
         if "No module named" in str(e):
-            print("💡 This looks like a missing dependency. Try:")
+            print(" This looks like a missing dependency. Try:")
             print("   pip install torch pandas scikit-learn numpy")
         elif "FileNotFoundError" in str(e):
-            print("💡 This looks like a missing file. Check:")
+            print(" This looks like a missing file. Check:")
             print("   - org_features.csv exists and is readable")
             print("   - siamese_model.pth exists and is readable")
         elif "dimension mismatch" in str(e).lower():
-            print("💡 This looks like a model architecture mismatch.")
+            print(" This looks like a model architecture mismatch.")
             print("   Your current features don't match the trained model.")
         
         return False
 
 if __name__ == "__main__":
-    print("🚀 Starting Siamese Network API...")
+    print(" Starting Siamese Network API...")
     print("=" * 50)
     
     # Explicitly load model
@@ -190,8 +190,8 @@ if __name__ == "__main__":
         uvicorn.run(app, host="203.57.40.162", port=8000)
     else:
         print("=" * 50)
-        print("❌ Failed to load model. Please fix the issues above.")
-        print("💡 Common solutions:")
+        print(" Failed to load model. Please fix the issues above.")
+        print(" Common solutions:")
         print("   1. Make sure all files are in the same directory")
         print("   2. Install dependencies: pip install -r requirements.txt")
         print("   3. Check that your inference.py works standalone")

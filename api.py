@@ -187,7 +187,7 @@ if __name__ == "__main__":
     if load_model_and_inference():
         print("=" * 50)
         print("🎉 Starting API server...")
-        uvicorn.run(app, host="203.57.40.162", port=8000)
+        uvicorn.run(app, host="0.0.0.0", port=8000)
     else:
         print("=" * 50)
         print(" Failed to load model. Please fix the issues above.")

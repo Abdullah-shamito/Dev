@@ -104,7 +104,7 @@ def load_model_and_inference():
     """Explicitly load the model and inference functions"""
     global predict_synergy, predict_synergy_batch, find_most_similar
     
-    print(" Checking required files...")
+    print("🔍 Checking required files...")
     
     # Check if required files exist
     required_files = ['org_features.csv', 'siamese_model.pth', 'inference.py', 'features.py']
@@ -115,14 +115,14 @@ def load_model_and_inference():
             missing_files.append(file)
     
     if missing_files:
-        print(f"❌ Missing files: {missing_files}")
+        print(f" Missing files: {missing_files}")
         print("Please ensure all required files are in the current directory:")
         for file in required_files:
             status = "✅" if file not in missing_files else "❌"
             print(f"  {status} {file}")
         return False
     
-    print(" All required files found")
+    print("✅ All required files found")
     
     # Add current directory to Python path (in case of import issues)
     if '.' not in sys.path:
@@ -144,7 +144,7 @@ def load_model_and_inference():
         predict_synergy_batch = psb
         find_most_similar = fms
         
-        print(" Model and inference functions loaded successfully!")
+        print("✅ Model and inference functions loaded successfully!")
         
         # Test that functions work
         print(" Testing functions...")
@@ -186,7 +186,7 @@ if __name__ == "__main__":
     # Explicitly load model
     if load_model_and_inference():
         print("=" * 50)
-        print(" Starting API server...")
+        print("Starting API server...")
         uvicorn.run(app, host="0.0.0.0", port=8000)
     else:
         print("=" * 50)
@@ -195,4 +195,4 @@ if __name__ == "__main__":
         print("   1. Make sure all files are in the same directory")
         print("   2. Install dependencies: pip install -r requirements.txt")
         print("   3. Check that your inference.py works standalone")
-        
+        sys.exit(1)

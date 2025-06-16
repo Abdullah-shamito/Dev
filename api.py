@@ -186,7 +186,7 @@ if __name__ == "__main__":
     # Explicitly load model
     if load_model_and_inference():
         print("=" * 50)
-        print("🎉 Starting API server...")
+        print(" Starting API server...")
         uvicorn.run(app, host="0.0.0.0", port=8000)
     else:
         print("=" * 50)
@@ -195,4 +195,4 @@ if __name__ == "__main__":
         print("   1. Make sure all files are in the same directory")
         print("   2. Install dependencies: pip install -r requirements.txt")
         print("   3. Check that your inference.py works standalone")
-        sys.exit(1)
+        
